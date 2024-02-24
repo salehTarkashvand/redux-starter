@@ -1,13 +1,19 @@
 
-import { Map } from 'immutable';
+import store from "./store";
+import { bugAdd, bugRemove, bugResolve } from './actions';
 
-let person = Map({
-  name: 'hamed',
-});
+const unsubscribe =  store.subscribe(() => {
+  console.log(
+    store.getState('first bug'),
+    'update store!'
+  );
+})
 
-const addPro = (object) => {
-  return object.set('age' , 30)
-}
+store.dispatch(bugAdd('first bug'));
+store.dispatch(bugAdd('first tow'));
+unsubscribe()
 
-person = addPro(person)
-console.log(person.toJS());
+// store.dispatch(bugRemove(1));
+store.dispatch(bugResolve(1));
+
+console.log(store.getState());
