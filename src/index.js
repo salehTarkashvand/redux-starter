@@ -1,6 +1,6 @@
 
-import store from "./store";
-import { bugAdd, bugRemove, bugResolve } from './actions';
+import { bugAdd, bugResolve } from './store/bug/actions';
+import store from "./store/configureStore";
 
 const unsubscribe =  store.subscribe(() => {
   console.log(
@@ -10,7 +10,11 @@ const unsubscribe =  store.subscribe(() => {
 })
 
 store.dispatch(bugAdd('first bug'));
+setTimeout(() => {
+  
+})
 store.dispatch(bugAdd('first tow'));
+
 unsubscribe()
 
 // store.dispatch(bugRemove(1));

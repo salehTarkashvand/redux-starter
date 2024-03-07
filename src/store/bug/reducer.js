@@ -1,6 +1,5 @@
 const initialState = [];
 import * as actions from './actionTypes';
-import { bugAdd } from './actions';
 let lastId = 0;
 export default (state = initialState, action) => {
   switch (action.type) {
