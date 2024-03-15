@@ -21,8 +21,7 @@
  * this code implement with redux-toolkit
  */
 import { configureStore } from '@reduxjs/toolkit';
-//import reducer from './bug/bugs';
-import reducer from './projects';
+import reducer from './reducers';
 export default function () {
   return configureStore({
     reducer,
