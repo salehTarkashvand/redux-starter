@@ -1,30 +1,27 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
-
-
-export const bugAdded = createAction('bugAdded');
-export const bugRemoved = createAction('bugRemoved');
-export const bugResolved = createAction('bugResolved');
-
+import { createSlice } from '@reduxjs/toolkit';
 
 let lastId = 0;
 const initialState = [];
-
-export default createReducer([], (builder) => {
-  builder
-    .addCase(bugAdded, (bugs, action) => {
+const slice = createSlice({
+  name: 'bugsSlice',
+  initialState: [],
+  reducers: {
+    bugAdded: (bugs, action) => {
       bugs.push({
         id: ++lastId,
         description: action.payload.description,
         resolved: false,
       });
-    })
-    .addCase(bugRemoved, (bugs, action) => {
+    },
+     bugRemoved: (bugs, action) => {
       return bugs.filter((itemBug) => itemBug.id !== action.payload.id);
-    })
-    .addCase(bugResolved, (bugs, action) => {
+    },
+    bugResolved: (bugs, action) => {
       const index = bugs.findIndex((bug) => bug.id === action.payload.id);
       bugs[index].resolved = true;
-    })
-  .addDefaultCase((bugs, action) =>bugs)
-    
-})
+    },
+  },
+});
+export const { bugAdded, bugRemoved, bugResolved } = slice.actions;
+
+export default slice.reducer;
