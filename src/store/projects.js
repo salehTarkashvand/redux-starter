@@ -15,5 +15,4 @@ const slice = createSlice({
 })
 
 export const { addProject } = slice.actions
-console.log(slice);
 export default slice.reducer
