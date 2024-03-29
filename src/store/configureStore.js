@@ -20,10 +20,18 @@
 /**
  * this code implement with redux-toolkit
  */
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import reducer from './reducers';
+import logger from './middleware/logger';
+import toast from './middleware/toast';
+import func from './middleware/func';
 export default function () {
   return configureStore({
     reducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat([
+        logger({ distension: 'console' }),
+        toast
+      ]),
   });
 }
